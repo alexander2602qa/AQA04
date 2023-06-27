@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -31,6 +32,9 @@ public class CardDeliveryTest {
         $(".button").click();
         $("[data-test-id='notification']")
                 .shouldHave(cssClass("notification_visible"), Duration.ofSeconds(15));
+        $(".notification__content")
+                .shouldHave(Condition.text("Встреча успешно забронирована на " + setDate(7)), Duration.ofSeconds(15))
+                .shouldBe(Condition.visible);
     }
 
     @Test
